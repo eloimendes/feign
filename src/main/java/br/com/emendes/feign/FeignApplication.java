@@ -1,5 +1,6 @@
 package br.com.emendes.feign;
 
+import br.com.emendes.feign.starter.Cep;
 import br.com.emendes.feign.starter.CepStarterWS;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,14 +17,11 @@ public class FeignApplication {
 	}
 
 	@Bean
-	public CommandLineRunner cir(CepWS cepWS, CepStarterWS cepStarter) {
+	public CommandLineRunner cir(CepStarterWS cepStarter) {
 
 		return args->{
-			final Cep cep = cepWS.findByCep("01435001");
-			System.out.println("logradouro: "+ cep.getLogradouro());
-
 			final br.com.emendes.feign.starter.Cep cep2 = cepStarter.findByCep("01435001");
-			System.out.println("logradouro com starter: "+ cep.getLogradouro());
+			System.out.println("logradouro com starter: "+ cep2.getLogradouro());
 		};
 	}
 
